@@ -3,7 +3,7 @@
 ## A Web-Scraper running in docker that utilizes the Mysterium Network to click ads while being undetected
 
 >This project aims to click your own ads and make money. The brilliance of it comes from the Mysterium network. 
->This allows us to use non-commercial ip's as VPNs'. When clicking on an ad from a known VPN/Proxy ad networks often >just block them therefore earning nothing. 
+>This allows us to use non-commercial ip's as VPNs'. When clicking on an ad from a known VPN/Proxy ad networks often just block them therefore earning nothing. 
 >That is where Mysterium Comes in allowing people to have a decentralized VPN.
 
 ## Part one: Mysterium
