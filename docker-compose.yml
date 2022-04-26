@@ -1,0 +1,44 @@
+# Docker compose file to deploy Mysterium Ad Clicker
+version: '3'
+
+services:
+
+
+  myst-node:
+    image: mysteriumnetwork/myst:latest
+    network_mode: host
+    cap_add:
+      - net_admin
+    ports:
+      - "4050:4050" # Tequila-api Port
+      - "4449:4449" # Myst port
+    command:
+      service --agreed-terms-and-conditions
+
+
+  ad-bot:
+    image: ad-bot
+    network_mode: host
+    cap_add:
+      - net_admin
+    devices:
+      - /dev/net/tun
+    volumes:
+      - $PWD/:/root/Dockerdata/
+    environment:
+      - myst=/opt/myst/myst
+      - PYTHONUNBUFFERED=1
+    depends_on: 
+      - myst-node
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15
+        # Your Mysterium Wallet Goes Below
+        echo '{"Your Mysterium Wallet Goes Here":{"Your Mysterium Wallet Goes Here"}' > /tmp/keystore.json
+        Your Mysterium Wallet Password Goes below
+        echo "identities import Put_Password_Here /tmp/keystore.json" | /opt/myst/myst cli --agreed-terms-and-conditions
+        sleep 5
+        python3 /root/Dockerdata/ad_bot.py
+
