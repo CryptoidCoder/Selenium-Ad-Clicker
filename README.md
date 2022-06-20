@@ -1,4 +1,4 @@
-# Selenium-Ad-Clicker
+# Selenium-Web-Clicker
 
 ## A Web-Scraper running in docker that utilizes the Mysterium Network to browse while being undetected
 
