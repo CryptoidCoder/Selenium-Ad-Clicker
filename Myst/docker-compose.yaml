@@ -1,0 +1,32 @@
+version: '3'
+
+
+volumes: 
+  myst-data:
+  python-scripts:
+
+
+services:
+  myst-client:
+    container_name: myst-client
+    build: # building dockerfile on ubuntu /w systemd
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    devices:
+      - /dev/net/tun
+    volumes:
+      - ./myst-data:/root/dockerdata/data # mysterium files
+      - ./python-scripts:/root/dockerdata/python-scripts # python files
+    command: 
+      - /bin/bash
+      - -c
+      - |
+        screen -d -m myst --ui.enable=false --consumer daemon 
+        sleep 3 # waits for tequila api daemon to spin up
+        echo "identities import YOURENCRYPTIONKEY /root/dockerdata/data/keystore.json" | myst cli --agreed-terms-and-conditions
+        myst connection proposals > ~/dockerdata/data/proposals.list # updates availible nodes (vpn's)
+        python3 ~/dockerdata/python-scripts/test.py # CHANGE THIS TO YOUR SCRIPT
