@@ -28,7 +28,7 @@
 >You will need to change some of the code in  ad_bot.py. 
 >You will need to change the URL to whatever domain you made for the Ad_site.
 
-    Docker build -t ad_bot .
+    docker-compose build ad_bot .
     docker-compose up
 
 ## All set you should start earing money wherever you set-up your ad network. 
