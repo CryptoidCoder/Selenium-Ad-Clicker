@@ -4,7 +4,7 @@
 # Ad-Bot
 FROM ubuntu:latest
 
-COPY Tun.sh /tmp/
+# COPY Tun.sh /tmp/
 
 ENV TZ=US/Mountain
 ENV DISPLAY=:99

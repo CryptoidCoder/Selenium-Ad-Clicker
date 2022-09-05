@@ -16,15 +16,15 @@ services:
       service --agreed-terms-and-conditions
 
 
-  ad-bot:
-    image: ad-bot
+  ad_bot:
+    image: ad_bot
     network_mode: host
     cap_add:
       - net_admin
     devices:
       - /dev/net/tun
     volumes:
-      - $PWD/:/root/Dockerdata/
+      - ./:/root/Dockerdata/
     environment:
       - myst=/opt/myst/myst
       - PYTHONUNBUFFERED=1
@@ -41,4 +41,3 @@ services:
         echo "identities import Put_Password_Here /tmp/keystore.json" | /opt/myst/myst cli --agreed-terms-and-conditions
         sleep 5
         python3 /root/Dockerdata/ad_bot.py
-
